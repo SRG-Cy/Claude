@@ -4,7 +4,7 @@ Weekly projects built with open-weight AI models.
 
 | Week | Prompt | Project |
 |---|---|---|
-| 1 | Touch Grass | *In progress* |
+| 1 | Touch Grass | [LevelOut](levelout/): an anime-style "System" that levels you up at a real skill with daily outdoor quests |
 | 2 | TBA (opens Oct 12) | [Plain Letter](plain-letter/): confusing letters, terms & conditions and data requests explained in plain words |
 
 Each project lives in its own folder with its own README and setup steps.
