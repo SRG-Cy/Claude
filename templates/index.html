@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plain Letter</title>
+  <meta name="description" content="Understand confusing letters, terms and conditions, and data requests in plain language. Powered by open-weight AI.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>✉️ Plain Letter</h1>
+      <p class="tagline">Confusing paperwork, explained in plain words, in your language.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    {% if demo_mode %}
+    <div class="notice" role="status">
+      <strong>Demo mode.</strong> No <code>HF_TOKEN</code> is set, so you'll see sample answers.
+      Add a free Hugging Face token to analyse your own text.
+    </div>
+    {% endif %}
+
+    <nav class="tabs" role="tablist" aria-label="What do you want to understand?">
+      <button class="tab active" role="tab" aria-selected="true" data-mode="letter">
+        <span class="tab-icon">📄</span><span><b>Letter or notice</b><small>Bills, government, bank, school</small></span>
+      </button>
+      <button class="tab" role="tab" aria-selected="false" data-mode="terms">
+        <span class="tab-icon">📜</span><span><b>Terms & conditions</b><small>What you're really agreeing to</small></span>
+      </button>
+      <button class="tab" role="tab" aria-selected="false" data-mode="asks">
+        <span class="tab-icon">🔐</span><span><b>What a site asks for</b><small>Forms, permissions, cookies</small></span>
+      </button>
+    </nav>
+
+    <section class="card input-card">
+      <label for="text" class="label" id="text-label">Paste the letter here</label>
+      <textarea id="text" rows="10" placeholder="Paste the full text…"></textarea>
+      <div class="input-row">
+        <label class="lang">Explain in
+          <select id="language">
+            {% for lang in languages %}<option>{{ lang }}</option>{% endfor %}
+          </select>
+        </label>
+        <button class="btn ghost" id="example" type="button">Try an example</button>
+        <label class="btn ghost file-btn">Open .txt file<input type="file" id="file" accept=".txt,text/plain" hidden></label>
+        <button class="btn primary" id="analyze" type="button">Explain it simply</button>
+      </div>
+      <p class="fineprint">Your text is sent to the AI only to make the explanation. Nothing is saved.</p>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <section id="result" class="result" hidden></section>
+  </main>
+
+  <footer class="wrap foot">
+    Powered by the open-weight model <code>{{ model }}</code> via Hugging Face.
+    Not legal or financial advice. Check important decisions with a professional.
+    <br>Built for MLH Global Hack Week: Hacktoberfest 2026.
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
